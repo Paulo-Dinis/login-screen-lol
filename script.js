@@ -1,28 +1,28 @@
-const inputs = document.querySelectorAll('.input');
-const button = document.querySelector('.login__button');
+$(document).ready(function(){
+    selecionou();
+    foco();
+    login();
+});
 
-const handleFocus = ({ target }) => {
-  const span = target.previousElementSibling;
-  span.classList.add('span-active');
-}
+function selecionou(){
+    $(".input").focus(function(){
+        let input = $(this).siblings();
+        input.addClass("span-active");
+    });
+};
 
-const handleFocusOut = ({ target }) => {
-  if (target.value === '') {
-    const span = target.previousElementSibling;
-    span.classList.remove('span-active');
-  }
-}
+function foco(){
+   $(".input").blur(function(){
+        let input = $(this).siblings();
+        if($(this).val() == ""){
+            input.removeClass("span-active");   
+        };
+    });
+};
 
-const handleChange = () => {
-  const [username, password] = inputs;
-
-  if (username.value && password.value.length >= 8) {
-    button.removeAttribute('disabled');
-  } else {
-    button.setAttribute('disabled', '');
-  }
-}
-
-inputs.forEach((input) => input.addEventListener('focus', handleFocus));
-inputs.forEach((input) => input.addEventListener('focusout', handleFocusOut));
-inputs.forEach((input) => input.addEventListener('input', handleChange));
+function login(){
+    $(":password").keydown(function(){
+        if(($(".input").length > 0) && ($(this).val().length >= 8)){$(".login_button").removeAttr("disabled")};
+    });
+};
+    
