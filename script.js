@@ -22,7 +22,14 @@ function foco(){
 
 function login(){
     $(":password").keydown(function(){
-        if(($(".input").length > 0) && ($(this).val().length >= 8)){$(".login_button").removeAttr("disabled")};
+        if(($(":text").val().length > 0) && ($(this).val().length >= 8)){
+            $(".login_button").removeAttr("disabled")
+        };
+
+        if(($(":text").val().length >= 0) && ($(this).val().length <= 8)){
+            $(".login_button").attr("disabled", true); 
+            console.log("teste")
+        };
     });
 };
     
